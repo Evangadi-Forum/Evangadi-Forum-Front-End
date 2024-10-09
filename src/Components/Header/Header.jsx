@@ -1,14 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css';
-import logo from '../../assets/EvangadiLogoHeader.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
-const Header = ({ showLinks }) => {
+const Header = ({ showLinks, logo, loginLogo }) => {
     return (
-        <nav className={`navbar ${showLinks ? 'login' : 'main'}`}>
+        <nav className={`navbar ${showLinks ? "login" : "main"}`}>
             <div className="logo">
-                <img src={logo} alt="Logo" />
+                <img
+                    src={showLinks ? loginLogo : logo}
+                    alt="Logo"
+                    className={showLinks ? "logo--login" : "logo--main"}
+                />
             </div>
+
             <div className="nav-links">
                 {showLinks && (
                     <>
@@ -17,9 +21,9 @@ const Header = ({ showLinks }) => {
                     </>
                 )}
             </div>
-            <Link to={showLinks ? "/login" : "/login"}>
-                <button className={showLinks ? "login-sign-in" : "sign-in"}>
-                    {showLinks ? "SIGN IN" : "SIGN IN"}
+            <Link to="/login">
+                <button className={showLinks ? "login-sign-in" : "home-sign-in"}>
+                    SIGN IN
                 </button>
             </Link>
         </nav>
